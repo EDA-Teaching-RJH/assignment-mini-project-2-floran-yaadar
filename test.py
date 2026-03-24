@@ -26,9 +26,11 @@ def open_menu():
     
 def recipe_menu():
     cowsay.fox("Here are the premade recipes")
-    recipe_select = input("1. Pancakes\n2. spaghetti bolognese\n3. garlic butter chicken.")
+    recipe_select = input("1. Pancakes\n2. Crepes\n3. Baked Sausage breakfast hash")
     if recipe_select == "1":
         return premade_recipe_list.pancakes()
+    elif recipe_select == "2":
+        return premade_recipe_list.crepes()
 
     
 def create_recipe():
