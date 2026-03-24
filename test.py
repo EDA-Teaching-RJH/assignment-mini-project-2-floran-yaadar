@@ -2,6 +2,8 @@ import cowsay
 import re
 import sys
 import premade_recipe_list
+import anyio
+from time import sleep
 
 def main():
     open_menu()
@@ -14,6 +16,7 @@ def validate_email(email):
 
 def open_menu():
     cowsay.fox("Welcome to the recipe scaler")
+    sleep(2)
     cowsay.fox(" Would u like a premade recipe or would you like to create your own?")
     answer = input("[A] premade.  [B] create your own. ").lower().strip()
     if answer == "a":
@@ -31,6 +34,8 @@ def recipe_menu():
         return premade_recipe_list.pancakes()
     elif recipe_select == "2":
         return premade_recipe_list.crepes()
+    elif recipe_select == "3":
+        return premade_recipe_list.baked_sausage_breakfast_hash
 
     
 def create_recipe():
