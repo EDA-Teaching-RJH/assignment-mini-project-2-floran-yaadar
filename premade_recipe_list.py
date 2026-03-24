@@ -11,11 +11,11 @@ def pancakes():
     cowsay.fox(f"here are the ingredients for panckes\n {servings} servings ")
     for i in range(len(ingredients)):
         print (f"{ingredients[i]} {new_measurments[i]} {scale[i]} ")
-        continue_recipe()
-        end()
+    continue_recipe()
+    
 def continue_recipe():
     cowsay.fox("Would you liketo to make this? ")
-    continue_answer = input("[Y]es or [N]o").lower().strip()
+    continue_answer = input("[Y]es or [N]o  ").lower().strip()
     if continue_answer == "y":
         return pancakes_instructions()
     elif continue_answer == "n":
@@ -27,6 +27,11 @@ def continue_recipe():
 def pancakes_instructions():
     print("1.Sift flour, baking powder, sugar, and salt together in a large bowl. Make a well in the center and add milk, melted butter, and egg; mix until smooth.\n2. Heat a lightly oiled griddle or pan over medium-high heat. Pour or scoop the batter onto the griddle, using approximately 1/4 cup for each pancake; cook until bubbles form and the edges are dry, about 2 to 3 minutes.\n3. Flip and cook until browned on the other side. Repeat with remaining batter.")
     cowsay.fox("serve and ENJOY!!")
+    xz = input("press enter to continue...").strip().lower()
+    if xz == "a":
+        return end()
+    else:
+        return end()
 def end():
     cowsay.fox("would you like to make another recipe?")
     end_answer = input("[Y]es or [N]o").lower().strip()
@@ -38,5 +43,5 @@ def end():
         cowsay.fox("please enter a valid option")
         return end()
     
-pancakes()
+
     
