@@ -2,9 +2,7 @@ import cowsay
 import anyio
 from time import sleep
 import sys
-import test
-from test import recipe_menu
-from test import open_menu
+
 def pancakes():
     pancake_ingredients = ["flour", "baking powder", "sugar", "salt", "milk", "butter", "egg"]
     pancake_measurments = ["1.5", "3.5", "1", "0.25", "1.25", "3", "1"]
@@ -26,7 +24,8 @@ def pancakes_continue_recipe():
         return pancakes_instructions()
     elif continue_answer == "n":
         cowsay.fox("okay, here are some of our other recipes!")
-        return test.recipe_menu()
+        from test import recipe_menu
+        return recipe_menu()
     else:
         cowsay.fox("please enter a valid option")
         return pancakes_continue_recipe()
@@ -43,7 +42,8 @@ def end():
     cowsay.fox("would you like to make another recipe?")
     end_answer = input("[Y]es or [N]o").lower().strip()
     if end_answer == "y":
-        return test.open_menu()
+        from test import open_menu
+        return open_menu()
     elif end_answer == "n":
         cowsay.fox("okay have a nice day! ")
     else:
@@ -88,9 +88,9 @@ def crepes_instructions():
 
 
 def baked_sausage_breakfast_hash():
-    bsbh_ingredients = ["flour", "sugar", "salt", "eggs", "milk", "water", "oil", "butter"]
-    bsbh_measurments = ["250", "40", "0.25", "3", "500", "80", "2", "45"]
-    bsbh_scale = ["grams", "grams", "teaspoons", "", "ml", "ml", "tablespoons", "tablespoons", "grams"]
+    bsbh_ingredients = ["potatoes", "olive oil", "smoked paprika", "dried thyme", "onion powder", "garlic powder", "salt", "bell pepper", "red onion", "pinch of salt and pepper", "bacon", "sausages", "eggs", "parsley"]
+    bsbh_measurments = ["800", "2", "0.5", "0.5", "0.25", "80", "2", "45"]
+    bsbh_scale = ["grams", "tablespoons", "teaspoons", "teaspoons", "teaspoons", "ml", "tablespoons", "tablespoons", "grams"]
     original_servings = 15
     cowsay.fox("how many servings would you like to make?")
     servings = int(input())

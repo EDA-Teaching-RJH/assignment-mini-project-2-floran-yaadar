@@ -5,19 +5,9 @@ import premade_recipe_list
 import anyio
 from time import sleep
 
-
-def main():
-    cowsay.fox("Welcome to the recipe scaler")
-    sleep(1)
-    open_menu()
-def validate_email(email):
-    email = input("please enter your email: ")
-    if re.search(r".+@.+\.(ac.uk | com)$", email):
-        return print (cowsay.fox("Email address is valid"))
-    else: 
-        return print (cowsay.fox("Sorry, that email address is not valid, please\n try again"))
-
 def open_menu():
+    cowsay.fox("Welcome to the recipe scaler")
+    sleep(2)
     cowsay.fox(" Would u like a premade recipe or would you like to create your own?")
     answer = input("[A] premade.  [B] create your own.  ").lower().strip()
     if answer == "a":
@@ -37,9 +27,3 @@ def recipe_menu():
         return premade_recipe_list.crepes()
     elif recipe_select == "3":
         return premade_recipe_list.baked_sausage_breakfast_hash()
-
-    
-def create_recipe():
-    pass
-
-main()
