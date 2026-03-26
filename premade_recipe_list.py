@@ -71,7 +71,8 @@ def crepes_continue_recipe():
         return crepes_instructions()
     elif continue_answer == "n":
         cowsay.fox("okay, here are some of our other recipes!")
-        return test.recipe_menu()
+        from test import recipe_menu
+        return recipe_menu()
     else:
         cowsay.fox("please enter a valid option")
         return crepes_continue_recipe()
@@ -88,9 +89,9 @@ def crepes_instructions():
 
 
 def baked_sausage_breakfast_hash():
-    bsbh_ingredients = ["potatoes", "olive oil", "smoked paprika", "dried thyme", "onion powder", "garlic powder", "salt", "bell pepper", "red onion", "pinch of salt and pepper", "bacon", "sausages", "eggs", "parsley"]
-    bsbh_measurments = ["800", "2", "0.5", "0.5", "0.25", "80", "2", "45"]
-    bsbh_scale = ["grams", "tablespoons", "teaspoons", "teaspoons", "teaspoons", "ml", "tablespoons", "tablespoons", "grams"]
+    bsbh_ingredients = ["potatoes", "olive oil", "smoked paprika", "dried thyme", "onion powder", "garlic powder", "salt", "bell pepper", "red onion", "pinch of salt and pepper", "bacon", "sausages", "eggs (as many as you want)", "parsley"]
+    bsbh_measurments = ["800", "2", "0.5", "0.5", "0.25", "0.25", "0.5", "1", "1", "1", "100", "500", "1", "1"]
+    bsbh_scale = ["grams", "tablespoons", "teaspoons", "teaspoons", "teaspoons", "teaspoons", "teaspoons", "", "", "", "grams", "grams", "", "tablespoon"]
     original_servings = 15
     cowsay.fox("how many servings would you like to make?")
     servings = int(input())
@@ -100,3 +101,26 @@ def baked_sausage_breakfast_hash():
     for i in range(len(bsbh_ingredients)):
         print (f"{bsbh_ingredients[i]} {new_measurments[i]} {bsbh_scale[i]} ")
     bsbh_continue_recipe()
+
+def bsbh_continue_recipe():
+    cowsay.fox("Would you like to to make this? ")
+    continue_answer = input("[Y]es or [N]o  ").lower().strip()
+    if continue_answer == "y":
+        return bsbh_instructions()
+    elif continue_answer == "n":
+        cowsay.fox("okay, here are some of our other recipes!")
+        from test import recipe_menu
+        return recipe_menu()
+    else:
+        cowsay.fox("please enter a valid option")
+        return bsbh_continue_recipe()
+
+def bsbh_instructions():
+    print("1. Preheat the oven to 200°C / 400°F (180°C fan-forced).\n2. Toss the potatoes with the oil and seasoning in a bowl. Spread on a lined tray, just big enough to hold everything in snugly rather than spread in a single layer (Note 3). Bake for 15 minutes.\n3. Capsicum and onion – Meanwhile, in the still-dirty potato bowl, toss the capsicum and onion with the oil, salt and pepper. Add to tray, then toss with the potatoes.\n4. Sausage & bacon – Squeeze dollops of the sausage meat out of the casings and dot them randomly on top (you could cut the sausages using a knife, but that just isn't as fun). Scatter with bacon.\n5. Bake 35 minutes – Bake 20 minutes. Toss, then bake for a further 15 minutes, or until potatoes are soft.\n6. Lower oven to 180°C/350°F (160°C fan).\n7. Eggs – Push the potato aside to make holes for the eggs. Crack eggs in. Return to oven for 7 minutes or until eggs are done to your liking (I like runny yolks which means just-set whites!).\n8. Scatter with parsley")
+    sleep(1)
+    cowsay.fox("serve and ENJOY!!")
+    xz = input("press enter to continue...").strip().lower()
+    if xz == "a":
+        return end()
+    else:
+        return end()
