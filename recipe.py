@@ -1,6 +1,6 @@
 import re
-import cowsay
-#THE INGREDIENT CLASS 
+import os
+
 class Ingredient:
     def __init__(self, name, quantity, unit):
         self.name = name
@@ -8,40 +8,38 @@ class Ingredient:
         self.unit = unit
 
     def scale(self, factor):
-        """Returns the scaled quantity."""
         return self.quantity * factor
 
-    def __str__(self):
-        """How the ingredient looks when printed."""
-        return f"{self.quantity:.2f} {self.unit} {self.name}"
-
-# THE RECIPE SUPERCLASS
 class Recipe:
     def __init__(self, name, original_servings, ingredients, instructions):
         self.name = name
         self.original_servings = int(original_servings)
-        self.ingredients = ingredients  
+        self.ingredients = ingredients  # List of Ingredient objects
         self.instructions = instructions
 
-    def get_scaling_factor(self, target_servings):
-        """Calculates the math for scaling."""
-        return target_servings / self.original_servings
-
-    def display_scaled_recipe(self, target_servings):
-        """Prints the final result for the user."""
-        factor = self.get_scaling_factor(target_servings)
-        print(f"\n--- {self.name} ({target_servings} servings) ---")
+    def display_scaled(self, target_servings):
+        factor = target_servings / self.original_servings
+        print(f"\n--- {self.name} for {target_servings} servings ---")
         for ing in self.ingredients:
-            scaled_qty = ing.scale(factor)
-            print(f"- {scaled_qty:.2f} {ing.unit} {ing.name}")
-        print(f"\nInstructions:\n{self.instructions}")
+            print(f"- {ing.scale(factor):.2f} {ing.unit} {ing.name}")
+        print(f"\nMethod:\n{self.instructions}\n")
 
-# THE BAKING RECIPE SUBCLASS 
-class BakingRecipe(Recipe):
-    def __init__(self, name, original_servings, ingredients, instructions, oven_temp):
-        super().__init__(name, original_servings, ingredients, instructions)
-        self.oven_temp = oven_temp
+# REGEX PARSER
+def parse_line(line):
+    # Regex looks for: [Number] [Unit] [Name]
+    match = re.search(r"(\d*\.?\d+)\s*(\w*)\s*(.*)", line)
+    if match:
+        return match.groups()
+    return None
 
-    def display_scaled_recipe(self, target_servings):
-        print(f"!!! REMINDER: Preheat oven to {self.oven_temp}°C !!!")
-        super().display_scaled_recipe(target_servings)
+# FILE I/O 
+def save_recipe_to_file(recipe_obj):
+    filename = f"recipes/{recipe_obj.name.lower().replace(' ', '_')}.txt"
+    os.makedirs('recipes', exist_ok=True)
+    with open(filename, "w") as f:
+        f.write(f"Name: {recipe_obj.name}\n")
+        f.write(f"Servings: {recipe_obj.original_servings}\n")
+        f.write("Ingredients:\n")
+        for ing in recipe_obj.ingredients:
+            f.write(f"{ing.quantity} {ing.unit} {ing.name}\n")
+        f.write(f"Instructions: {recipe_obj.instructions}")
