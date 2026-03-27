@@ -14,7 +14,7 @@ class Recipe:
     def __init__(self, name, original_servings, ingredients, instructions):
         self.name = name
         self.original_servings = int(original_servings)
-        self.ingredients = ingredients  # List of Ingredient objects
+        self.ingredients = ingredients  
         self.instructions = instructions
 
     def display_scaled(self, target_servings):
@@ -26,7 +26,6 @@ class Recipe:
 
 # REGEX PARSER
 def parse_line(line):
-    # Regex looks for: [Number] [Unit] [Name]
     match = re.search(r"(\d*\.?\d+)\s*(\w*)\s*(.*)", line)
     if match:
         return match.groups()
