@@ -24,7 +24,7 @@ def open_menu():
         open_menu()
 
 def recipe_menu():
-    # --- DATA INTEGRATION: YOUR ORIGINAL RECIPES AS OOP OBJECTS ---
+    
     
     # 1. PANCAKES
     pancakes = Recipe(
@@ -85,9 +85,7 @@ def recipe_menu():
         cowsay.fox(f"How many servings of {selected.name}?")
         try:
             servings = int(input("> "))
-            selected.display_scaled(servings) # The Class handles the math!
-            
-            # OPTIONAL: Save the scaled version to a file (Extra File I/O Marks!)
+            selected.display_scaled(servings) 
             save_choice = input("Save this scaled version to a file? (y/n): ").lower()
             if save_choice == 'y':
                 save_recipe_to_file(selected) 
